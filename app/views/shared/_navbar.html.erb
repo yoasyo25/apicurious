@@ -1,0 +1,6 @@
+
+<% if current_user %>
+<%= link_to "Logout", logout_path %>
+<% else %>
+<%= link_to "Log in with Github", "https://github.com/login/oauth/authorize?client_id=#{ENV["client_id"]}"  %>
+<% end %>
