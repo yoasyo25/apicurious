@@ -3,7 +3,7 @@ require 'rails_helper'
 describe GithubService do
 
   describe "repositories" do
-    it "finds finds user repositories" do
+    it "finds user repositories" do
 
       auth = {
         "provider" => 'github',
@@ -22,7 +22,7 @@ describe GithubService do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      VCR.use_cassette("services/find-user-repos") do
+      VCR.use_cassette("services/find-user-repos", :record => :new_episodes) do
         repositories = GithubService.find_all_repos(user)
         repository = repositories.first
 
@@ -30,8 +30,31 @@ describe GithubService do
         expect(repository[:name]).to eq("active-record-sinatra")
         expect(repository[:html_url]).to eq("https://github.com/yoasyo25/active-record-sinatra")
         expect(repository[:created_at]).to eq("2017-06-28T20:07:38Z")
-
       end
+
+      VCR.use_cassette("services/find-followers", :record => :new_episodes) do
+        followers = GithubService.find_all_followers(user)
+        follower = followers.first
+
+        expect(followers.count).to eq(4)
+        expect(follower[:login]).to eq("dianawhalen")
+      end
+
+      VCR.use_cassette("services/find-following", :record => :new_episodes) do
+        followings = GithubService.find_all_following(user)
+        following = followings.first
+
+        expect(following.count).to eq(17)
+        expect(following[:login]).to eq("dhh")
+      end
+
+      # VCR.use_cassette("services/find-organizations", :record => :new_episodes) do
+      #   organizations = GithubService.find_all_organizations(user)
+      #   organization = organizations.first
+      #
+      #   expect(organization.count).to eq(1)
+      #   expect(organization[:url]).to eq("dhh")
+      # end
     end
   end
 end

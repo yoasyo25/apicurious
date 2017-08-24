@@ -20,7 +20,7 @@ feature "user can see profile page" do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    VCR.use_cassette("features/user_can_see_profile_page") do
+    VCR.use_cassette("features/user_can_see_profile_page", :record => :new_episodes) do
       visit "/dashboard"
 
       expect(current_path).to eq(dashboard_path)

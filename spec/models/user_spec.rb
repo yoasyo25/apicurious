@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it "creates of updates itself from oauth hash" do
+  it "creates or updates User from oauth hash" do
     auth = {
       "provider" => 'github',
       "id" =>  1,
