@@ -13,10 +13,8 @@
  *= require_tree .
  *= require_self
  */
-
- @import "bootstrap-sprockets";
+ @import 'bootstrap-sprockets';
  @import "bootstrap";
-
 
 
  .footer {
@@ -31,4 +29,13 @@
 
  img.img-square.img-thumbnail.home-image {
   height: 200px;
+}
+
+.jumbotron {
+  text-align: center;
+  border-bottom: .05rem solid #e5e5e5;
+}
+
+.log-in-user {
+
 }

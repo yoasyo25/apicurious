@@ -19,8 +19,6 @@
           <li><a href="#">Following</a></li>
           <li><a href="#">Recent Activity</a></li>
           <li><%= link_to "Logout", logout_path %></li>
-        <% else %>
-          <li><%= link_to "Log in with Github", "https://github.com/login/oauth/authorize?client_id=#{ENV["client_id"]}&scope=repo"  %></li>
       <% end %>
       </ul>
     </div>

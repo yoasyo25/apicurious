@@ -9,7 +9,14 @@ class Repository
   end
 
   def repo_name
-    @name.split("/").last
+    @name.split("/").last.capitalize
   end
+
+  def self.find_all(current_user)
+    repositories = GithubService.find_all_repos(current_user).map do |raw_repo|
+      Repository.new(raw_repo)
+    end
+  end
+
 
 end

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 feature "user can see profile page" do
+  scenario "a logged in user can see own repos" do
 
-  before :each do
     auth = {
       "provider" => 'github',
       "id" =>  1,
@@ -19,20 +19,20 @@ feature "user can see profile page" do
     user = User.from_github(auth, auth["token"])
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-  end
 
-  scenario "a logged in user can see own repos" do
+    VCR.use_cassette("features/user_can_see_profile_page") do
+      visit "/dashboard"
 
-    visit "/dashboard"
+      expect(current_path).to eq(dashboard_path)
 
-    expect(current_path).to eq(dashboard_path)
+      click_on "Repositories"
+      expect(current_path).to eq(repository_path)
 
-    click_on "Repositories"
-    expect(current_path).to eq(repository_path)
-    within(first('.repositories')) do
-      expect(page).to have_css(".name")
-      expect(page).to have_css(".created_at")
-      expect(page).to have_css(".language")
+      within(first('.repositories')) do
+        expect(page).to have_css(".name")
+        expect(page).to have_css(".created_at")
+        expect(page).to have_css(".language")
+      end
     end
   end
 end
