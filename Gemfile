@@ -39,6 +39,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'launchy', '~> 2.4', '>= 2.4.3'
 end
 
 group :development do
@@ -54,5 +55,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'figaro'
 gem 'faraday'
-# gem 'omniauth', '~> 1.6', '>= 1.6.1'
-gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
+gem 'omniauth'
+gem 'bootstrap-sass'
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
