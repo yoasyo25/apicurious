@@ -1,6 +1,26 @@
+<nav class="navbar navbar-inverse navbar-default">
 
-<% if current_user %>
-<%= link_to "Logout", logout_path %>
-<% else %>
-<%= link_to "Log in with Github", "https://github.com/login/oauth/authorize?client_id=#{ENV["client_id"]}"  %>
-<% end %>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">ApiCurious</a>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li><a href="/repository">Repositories</a></li>
+          <li><a href="#">Organizations</a></li>
+          <li><a href="#">Following</a></li>
+          <li><a href="#">Recent Activity</a></li>
+          <li><%= link_to "Logout", logout_path %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

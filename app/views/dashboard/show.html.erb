@@ -1,3 +1,27 @@
-<h1>Hi, <%= current_user.name %></h1>
-<%= image_tag current_user.image %>
-<p><%= current_user.email %></p>
+<div class="container">
+  <div class="row">
+   <div class="col-md-3">
+     <p><%= image_tag current_user.image, class: "img-square img-thumbnail home-image" %></p>
+     <h4><%= current_user.name %></h4>
+     <p><%= current_user.username %></p>
+     <p><%= current_user.email %></p>
+     <hr>
+
+
+   <div class="col-md-3">
+     <h3>Followers</h3>
+     <p><% @followers.each do |follower| %></p>
+      <p><%= image_tag(follower[:avatar_url], size: "100x100", class: "img-thumbnail home-image") %></p>
+      <p><strong><%= link_to follower[:login], follower[:html_url] %></strong></p>
+     <% end %>
+   </div>
+
+   <div class="col-md-3">
+     <h3>Following</h3>
+     <p><% @followings.each do |following| %></p>
+      <p><%= image_tag(following[:avatar_url], size: "100x100", class: "img-thumbnail home-image") %></p>
+      <p><strong><%= link_to following[:login], following[:html_url] %><strong></p>
+     <% end %>
+   </div>
+ </div>
+</div>

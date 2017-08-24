@@ -1,1 +1,7 @@
-<h1>Welcome to ApiCurious</h1>
+<div class="container">
+  <div class="jumbotron">
+    <h2 align="center">Welcome to ApiCurious</h2></br>
+    <p><%= image_tag("codercat.jpg", size: "400x400") %></p>
+    <p><strong><%= link_to "Log in with Github", "https://github.com/login/oauth/authorize?client_id=#{ENV["client_id"]}&scope=repo", {style: "color: black"} %></strong></p>
+  </div>
+</div>

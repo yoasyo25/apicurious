@@ -6,6 +6,14 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'omniauth'
+require 'webmock/rspec'
+require 'vcr'
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/cassettes"
+  config.hook_into :webmock
+end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -30,16 +38,16 @@ ActiveRecord::Migration.maintain_test_schema!
   def stub_omniauth
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
-      provider: 'github',
-      id: 1,
-      username: "yoasyo25",
-      uid: "16178096",
-      token: "0a284b6c7844b121dd2868f25149cd9b1e63a8b7",
-      image: "https://avatars2.githubusercontent.com/u/16178096?v=4",
-      name: "Yohanan Assefa ",
-      email: "nanahoy@gmail.com",
-      created_at: "Tue, 22 Aug 2017 13:49:43 UTC +00:00",
-      updated_at: "Tue, 22 Aug 2017 13:49:43 UTC +00:00"
+      "provider" => 'github',
+      "id" =>  1,
+      "login" => "yoasyo25",
+      "uid" => "16178096",
+      "token" => "0a284b6c7844b121dd2868f25149cd9b1e63a8b7",
+      "avatar_url" => "https://avatars2.githubusercontent.com/u/16178096?v=4",
+      "name" => "Yohanan Assefa",
+      "email" => "nanahoy@gmail.com",
+      "created_at" => "Tue, 22 Aug 2017 13:49:43 UTC +00:00",
+      "updated_at" => "Tue, 22 Aug 2017 13:49:43 UTC +00:00"
       })
   end
 

@@ -1,0 +1,20 @@
+
+<div class="container">
+  <h3 align="center"><%= @repositories.count %> Repositories</h3>
+  <hr>
+  <div class="row">
+    <% @repositories.each do |repo| %>
+    <div class="col-md-4">
+        <div class="card border-secondary mb-3">
+        <div class="card-block">
+          <div class="repositories">
+            <p class="name card-text">Repo Name: <%= repo.repo_name %></p>
+            <p class="language card-text">Language: <%= repo.language %></p>
+            <p class="created_at card-text">Created at: <%= repo.created_at %></p>
+            <p class="link card-text">Repo Link: <%= link_to repo.repo_name, repo.link %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+</div>

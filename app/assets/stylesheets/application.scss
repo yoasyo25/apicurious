@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+ @import 'bootstrap-sprockets';
+ @import "bootstrap";
+
+
+ .footer {
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   /* Set the fixed height of the footer here */
+   height: 50px;
+   line-height: 50px; /* Vertically center the text there */
+   background-color: #f5f5f5;
+ }
+
+ img.img-square.img-thumbnail.home-image {
+  height: 200px;
+}
+
+.jumbotron {
+  text-align: center;
+  border-bottom: .05rem solid #e5e5e5;
+}
+
+.log-in-user {
+
+}
